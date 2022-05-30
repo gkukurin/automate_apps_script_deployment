@@ -1,0 +1,32 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "deploy_dev": "./prepare.sh dev && npx clasp push -f",
+    "deploy_prd": "./prepare.sh prd && npx clasp push -f",
+    "lint": "eslint . --fix"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "keywords": [],
+  "author": "Goran Kukurin <goran.kukurin@gmail.com>",
+  "optionalDependencies": {
+    "fsevents": "2.1.2"
+  },
+  "devDependencies": {
+    "@google/clasp": "^2.4.1",
+    "@types/google-apps-script": "^1.0.47",
+    "@typescript-eslint/eslint-plugin": "^5.23.0",
+    "@typescript-eslint/parser": "^5.23.0",
+    "eslint": "^8.15.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-googleappsscript": "^1.0.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "google-apps-script": "^4.1.7",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.6.2",
+    "typescript": "^4.6.4"
+  }
+}

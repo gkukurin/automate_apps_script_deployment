@@ -1,0 +1,26 @@
+{
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "deploy_prd",
+      "problemMatcher": ["$eslint-stylish"],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "label": "Production",
+      "detail": "Deploy code to production environment"
+    },
+    {
+      "type": "npm",
+      "script": "deploy_dev",
+      "problemMatcher": ["$eslint-stylish"],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "label": "Development",
+      "detail": "Deploy code to development environment"
+    }
+  ]
+}

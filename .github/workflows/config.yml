@@ -1,0 +1,28 @@
+name: Apps Script deployment with GitHub Actions
+on:
+  push:
+    branches:
+      - main
+      - develop
+jobs:
+  Deploy-AppsScript:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 12
+          cache: npm
+      - run: npm ci
+      - if: ${{ endsWith(github.ref, 'main') }}
+        run: ./prepare.sh prd
+      - if: ${{ endsWith(github.ref, 'develop') }}
+        run: ./prepare.sh dev
+      - name: Linting
+        run: npm run lint
+      - run: |
+          gpg \
+            --quiet --batch --yes --decrypt --passphrase="${{ secrets.CLASP_SECRET }}" \
+            --output $HOME/.clasprc.json .clasprc.json.gpg
+      - run: npx clasp push -f
